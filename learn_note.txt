@@ -1,6 +1,6 @@
 工作区：正常文件系统，非git区域
 暂存区：stage
-分支：最后保存的位置
+分支：最后保存的位置，版本库
 
 git add <file1> <file2> ……  //提交到stage
 git commit -m <str>   //向分支提交并注释
@@ -17,3 +17,8 @@ git checkout <files> //把文件在工作区的修改全部撤销
   "git checkout -- file"命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令
 git reset --hard <版本号（HEAD=现在；^=上一个>    //版本回退
 git reflog            //操作变动（不包括stage）
+
+init:
+git remote add origin git@github.com:shinpoi/git_learn.git
+git push -u origin master //-u:关联本地和远程的master分支
+git push origin master    //本地的master分支push到origin（远程库的名字）
