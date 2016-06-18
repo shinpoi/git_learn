@@ -1,3 +1,8 @@
-git add <file1> <file2> ……
-git commit -m <str>   //提交并注释
-git status            //查看workspace状态
+暂存区：stage
+
+git add <file1> <file2> ……  //提交到stage
+git commit -m <str>   //向分支提交并注释
+git status            //查看递交区和stage状态
+git log [--pretty=oneline]  //最近到最远的提交日志
+git reset --hard <版本号（HEAD=现在；^=上一个>    //版本回退
+git reflog            //操作变动（不包括stage）
