@@ -44,3 +44,17 @@ git stash drop
 git stash pop     //恢复并清空栈
 
 git remote (-v)   //查看远程库信息(-v 详细)
+
+tags:
+git tag <tagname> (commit_ID)    //为当前版本(其他版本)添加标签
+git tag     //查看标签
+git show <tagname>    //查看标签详细信息
+$ git tag -a <tagname>  -m <information> <commit_ID>
+//-a 标签名  -m 备注
+git tag -d v0.1   //只删除标签本身
+git push origin <tagname>
+git push origin --tags
+
+删除远程标签：
+git tag -d v0.9   //先删本地
+git push origin :refs/tags/v0.9 //删除同样是push
