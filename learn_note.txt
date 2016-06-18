@@ -42,3 +42,5 @@ git stash list
 git stash apply   //恢复但不清空栈
 git stash drop
 git stash pop     //恢复并清空栈
+
+git remote (-v)   //查看远程库信息(-v 详细)
