@@ -5,7 +5,7 @@
 git add <file1> <file2> ……  //提交到stage
 git commit -m <str>   //向分支提交并注释
 git status            //查看递交区和stage状态
-git diff HEAD -- readme.txt
+git diff HEAD -- <files>
   git diff //显示当前工作区的文件和stage区文件的差异
   git diff --staged //显示stage区和HEAD的文件的差异
   git diff HEAD //显示工作区和上次递交文件的差异
@@ -34,4 +34,11 @@ git checkout -b <branch>  //-b参数表示创建并切换
 git branch  //查看所有分支
 
 git merge <branch>  //合并指定分支到当前分支
-git branch -d <branch>    //-d delet
+git merge --no-ff <branch>  //--no-ff means merge with no-Fast forward
+git branch -d <branch>    //-d delet（未合并时无法删除，可以-D 强制删除）
+
+git stash   //备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。
+git stash list
+git stash apply   //恢复但不清空栈
+git stash drop
+git stash pop     //恢复并清空栈
