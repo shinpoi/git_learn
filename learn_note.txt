@@ -30,6 +30,6 @@ git checkout -b <branch>  //-b参数表示创建并切换
   git branch <branch>
   git checkout <branch>
 git branch  //查看所有分支
-git merge <branch>  //合并指定分支到当前分支
 
+git merge <branch>  //合并指定分支到当前分支
 git branch -d <branch>    //-d delet
