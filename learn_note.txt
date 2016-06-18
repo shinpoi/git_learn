@@ -9,7 +9,9 @@ git diff HEAD -- readme.txt
   git diff //显示当前工作区的文件和stage区文件的差异
   git diff --staged //显示stage区和HEAD的文件的差异
   git diff HEAD //显示工作区和上次递交文件的差异
-git log [--pretty=oneline]  //最近到最远的提交日志
+git log //最近到最远的提交日志
+git log --graph --pretty=oneline --abbrev-commit
+//--graph 图；--pretty=oneline 一行；--abbrev-commit 简短id
 
 git checkout --<files> //把文件在工作区的修改全部撤销
   还没有被放到暂存区，撤销修改就回到和版本库一模一样的状态；
