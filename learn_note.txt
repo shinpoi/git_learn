@@ -1,0 +1,3 @@
+git add <file1> <file2> ……
+git commit -m <str>   //提交并注释
+git status            //查看workspace状态
