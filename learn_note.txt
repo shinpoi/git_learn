@@ -21,4 +21,12 @@ git reflog            //操作变动（不包括stage）
 init:
 git remote add origin git@github.com:shinpoi/git_learn.git
 git push -u origin master //-u:关联本地和远程的master分支
+
 git push origin master    //本地的master分支push到origin（远程库的名字）
+git clone git@github.com:<id>/<repositories>.git    //git clone +adress
+
+branch:
+git checkout -b <branch>  //-b参数表示创建并切换
+  git branch <branch>
+  git checkout <branch>
+git branch  //查看所有分支
