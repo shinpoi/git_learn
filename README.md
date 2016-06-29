@@ -26,7 +26,7 @@ tlie-middle
 文字`高亮`
 
     代码模式,空格不会被无视啦！    <-多个空格
-    new girlfriend = onnnanoko(kawaii)
+    Onnnanoko girlfriend = new Onnnanoko(kawaii)
     girlfriend.print
     >>そんなも、いねぇよ
     可以前加两个tab，也可以用``括起来
