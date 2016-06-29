@@ -21,13 +21,14 @@ tlie-middle
 换行了吗？ --回车变成了小空格</br>
 用br标签换行试试…… --br</br>
 换行了吗？</br>
-原来如此原来如此～
+原来如此原来如此～  
+麻烦？好吧……其实加俩空格再回车就行了orz
 
 文字`高亮`
 
     代码模式,空格不会被无视啦！    <-多个空格
     Onnnanoko girlfriend = new Onnnanoko(kawaii)
-    girlfriend.print
+    girlfriend.print()
     >>そんなも、いねぇよ
     可以前加两个tab，也可以用``括起来
     于是这样就`自动换行`了？（p.s.双tab==高亮模式）
