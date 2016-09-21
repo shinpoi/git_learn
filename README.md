@@ -77,9 +77,9 @@ cout<<"Hello,world"<<end;   //cpp
 ```
 
 ```python
-print("Hellow,world")   //python
+print("Hellow,world")   # python
 ```
 
 ```html
-<p style="color:blue">Hello,world</p>   //html
+<p style="color:blue">Hello,world</p>   <!-- html -->
 ```
