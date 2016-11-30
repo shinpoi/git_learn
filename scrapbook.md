@@ -1,3 +1,6 @@
+## Basic Boncept
+* [协方差矩阵 (covariance matrix) 基本概念](http://pinkyjie.com/2010/08/31/covariance/)
+
 ## Paper:
 * DeepMind  
 [Sim-to-Real Robot Learning from Pixels with Progressive Nets](https://arxiv.org/abs/1610.04286) (13 Oct 2016)  
