@@ -4,7 +4,8 @@
 ## Paper:
 * DeepMind  
 [Sim-to-Real Robot Learning from Pixels with Progressive Nets](https://arxiv.org/abs/1610.04286) (13 Oct 2016)  
-[Reinforcement Learning with Unsupervised Auxiliary Tasks](https://arxiv.org/abs/1611.05397) (16 Nov 2016)
+[Reinforcement Learning with Unsupervised Auxiliary Tasks](https://arxiv.org/abs/1611.05397) (16 Nov 2016)  
+[Learning to Navigate in Complex Environments](https://arxiv.org/abs/1611.03673) (30 Nov 2016)
 
 
 ## News:
