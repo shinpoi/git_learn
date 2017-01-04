@@ -1,5 +1,6 @@
 ## Basic Boncept
-* [协方差矩阵 (covariance matrix) 基本概念](http://pinkyjie.com/2010/08/31/covariance/)
+* [协方差矩阵 (covariance matrix) 基本概念](http://pinkyjie.com/2010/08/31/covariance/)  
+* [Linux - 动态链接库, LIBRARY_PATH, LD_LIBRARY_PATH, \*.so](https://github.com/shinpoi/git_learn/blob/master/closet/Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8FLD_LIBRARY_PATH.txt)
 
 ## Paper:
 * DeepMind  
