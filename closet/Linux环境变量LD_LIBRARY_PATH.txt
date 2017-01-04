@@ -1,0 +1,83 @@
+> http://www.linuxidc.com/Linux/2017-01/139072.htm
+
+
+LIBRARY_PATH和LD_LIBRARY_PATH是Linux下的两个环境变量，二者的含义和作用分别如下：
+
+LIBRARY_PATH环境变量用于在程序编译期间查找动态链接库时指定查找共享库的路径，例如，指定gcc编译需要用到的动态链接库的目录。设置方法如下（其中，LIBDIR1和LIBDIR2为两个库目录）：
+
+export LIBRARY_PATH=LIBDIR1:LIBDIR2:$LIBRARY_PATH
+
+LD_LIBRARY_PATH环境变量用于在程序加载运行期间查找动态链接库时指定除了系统默认路径之外的其他路径，注意，LD_LIBRARY_PATH中指定的路径会在系统默认路径之前进行查找。设置方法如下（其中，LIBDIR1和LIBDIR2为两个库目录）：
+
+export LD_LIBRARY_PATH=LIBDIR1:LIBDIR2:$LD_LIBRARY_PATH
+
+举个例子，我们开发一个程序，经常会需要使用某个或某些动态链接库，为了保证程序的可移植性，可以先将这些编译好的动态链接库放在自己指定的目录下，然后按照上述方式将这些目录加入到LD_LIBRARY_PATH环境变量中，这样自己的程序就可以动态链接后加载库文件运行了。
+
+区别与使用：
+
+开发时，设置LIBRARY_PATH，以便gcc能够找到编译时需要的动态链接库。
+
+发布时，设置LD_LIBRARY_PATH，以便程序加载运行时能够自动找到需要的动态链接库。
+
+----------------------------------------------------------------------------------
+
+Linux环境变量名，该环境变量主要用于指定查找共享库(动态链接库)时除了默认路径之外的其他路径。(该路径在默认路径之前查找)
+　　移植程序时的经常碰到需要使用一些特定的动态库，而这些编译好的动态库放在我们自己建立的目录里，这时可以将这些目录设置到LD_LIBRARY_PATH中。
+　　当执行函数动态链接.so时，如果此文件不在缺省目录下‘/usr/local/lib’ and ‘/usr/lib’.
+　　那么就需要指定环境变量LD_LIBRARY_PATH
+　　假如现在需要在已有的环境变量上添加新的路径名，则采用如下方式：
+　　LD_LIBRARY_PATH=NEWDIRS:$LD_LIBRARY_PATH.（newdirs是新的路径串）
+
+Linux 运行的时候，是如何管理共享库(*.so)的？在 Linux 下面，共享库的寻找和加载是由 /lib/ld.so 实现的。 ld.so 在标准路经(/lib, /usr/lib) 中寻找应用程序用到的共享库。
+
+但是，如果需要用到的共享库在非标准路经，ld.so 怎么找到它呢？
+
+目前，Linux 通用的做法是将非标准路经加入 /etc/ld.so.conf，然后运行 ldconfig 生成 /etc/ld.so.cache。 ld.so 加载共享库的时候，会从 ld.so.cache 查找。
+
+传统上，Linux 的先辈 Unix 还有一个环境变量：LD_LIBRARY_PATH 来处理非标准路经的共享库。ld.so 加载共享库的时候，也会查找这个变量所设置的路经。
+
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./lib
+
+export LD_LIBRARY_PATH
+
+但是，有不少声音主张要避免使用 LD_LIBRARY_PATH 变量，尤其是作为全局变量。这些声音是：
+* LD_LIBRARY_PATH is not the answer - http://prefetch.net/articles/linkers.badldlibrary.html
+* Why LD_LIBRARY_PATH is bad - http://xahlee.org/UnixResource_dir/_/ldpath.html
+* LD_LIBRARY_PATH - just say no - http://blogs.sun.com/rie/date/20040710
+
+解决这一问题的另一方法是在编译的时候通过 -R<path> 选项指定 run-time path。
+
+1. 往/lib和/usr/lib里面加东西，是不用修改/etc/ld.so.conf的，但是完了之后要调一下ldconfig，不然这个library会找不到
+
+2. 想往上面两个目录以外加东西的时候，一定要修改/etc/ld.so.conf，然后再调用ldconfig，不然也会找不到
+比如安装了一个mysql到/usr/local/mysql，mysql有一大堆library在/usr/local/mysql/lib下面，这时就需要在/etc/ld.so.conf下面加一行/usr/local/mysql/lib，保存过后ldconfig一下，新的library才能在程序运行时被找到。
+
+3. 如果想在这两个目录以外放lib，但是又不想在/etc/ld.so.conf中加东西（或者是没有权限加东西）。那也可以，就是export一个全局变量LD_LIBRARY_PATH，然后运行程序的时候就会去这个目录中找library。一般来讲这只是一种临时的解决方案，在没有权限或临时需要的时候使用。
+
+4. ldconfig做的这些东西都与运行程序时有关，跟编译时一点关系都没有。编译的时候还是该加-L就得加，不要混淆了。
+
+5. 总之，就是不管做了什么关于library的变动后，最好都ldconfig一下，不然会出现一些意想不到的结果。不会花太多的时间，但是会省很多的事。
+
+LD_LIBRARY_PATH 这个环境变量是大家最为熟悉的，它告诉loader：在哪些目录中可以找到共享库。可以设置多个搜索目录，这些目录之间用冒号分隔开。在linux下，还提供了另外一种方式来完成同样的功能，你可以把这些目录加到/etc/ld.so.conf中，然后调用ldconfig。当然，这是系统范围内全局有效的，而环境变量只对当前shell有效。按照惯例，除非你用上述方式指明，loader是不会在当前目录下去找共享库的，正如shell不会在当前目前找可执行文件一样。
+
+库搜索路径的确定有很多方法，LD_LIBRARY_PATH只是其中一种。如编译命令行rpath参数.  连接时的LD_RUN_PATH环境变量。/lib,/usr/lib标准目录。动态连接器缓存/etc/ld.so.conf.
+
+LD_LIBRARY_PATH: 动态库的查找路径
+
+设置：
+
+方法一： export  LD_LIBRARY_PATH=LD_LIBRARY_PATH:/XXX 但是登出后就失效
+
+方法二：  修改~/.bashrc或~/.bash_profile或系统级别的/etc/profile
+
+                  1. 在其中添加例如export PATH=/opt/ActiveP/lib:$LD_LIBRARY_PATH
+
+                  2. source .bashrc  (Source命令也称为“点命令”，也就是一个点符号（.）。source命令通常用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录)
+
+方法三：这个没有修改LD_LIBRARY_PATH但是效果是一样的实现动态库的查找，
+
+                1. /etc/ld.so.conf下面加一行/usr/local/MySQL/lib
+
+                2. 保存过后ldconfig一下（ldconfig 命令的用途,主要是在默认搜寻目录(/lib和/usr/lib)以及动态库配置文件/etc/ld.so.conf内所列的目录下,搜索出可共享的动态链接库(格式如前介绍,lib*.so*),进而创建出动态装入程序(ld.so)所需的连接和缓存文件.缓存文件默认为/etc/ld.so.cache,此文件保存已排好序的动态链接库名字列表.）
+
+方法三设置稍微麻烦，好处是比较不受用户的限制。
