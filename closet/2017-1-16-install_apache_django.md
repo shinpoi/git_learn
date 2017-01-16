@@ -12,10 +12,12 @@ yum install python
 yum install python-dev  
 
 ## python3(source)  
-./configure **--enable-loadable-sqlite-extensions**  
+./configure **--enable-loadable-sqlite-extensions CFLAGS=-fPIC --enable-shared**  
 make  
 make install  
-
+**if there:**     
+`error while loading shared libraries: libpython3.5m.so.1.0: cannot open shared object file: No such file or directory`  
+\>LD_LIBRARY_PATH=MAKE_PATH  
 
 ## apache(source)  
 (yum install httpd) 
