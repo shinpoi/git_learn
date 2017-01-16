@@ -1,3 +1,5 @@
+>https://robots.thoughtbot.com/the-magic-behind-configure-make-make-install
+
 ## sqlite3  
 (yum list | grep -i sqlite)  
 (yum list | grep sqlite | grep dev)  
