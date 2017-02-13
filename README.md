@@ -61,7 +61,7 @@ tlie-middle
 <img height="200" width="200" src="https://avatars0.githubusercontent.com/u/17242436"></img>
 
     超链接图可以通过两行来实现：
-    [![标识]](链接URL)
+    [![标识]](链接URL
     [标识]:图片URL "注释"
     上下两行标示必须一样
 
@@ -82,4 +82,5 @@ print("Hellow,world")   # python
 
 ```html
 <p style="color:blue">Hello,world</p>   <!-- html -->
-```
+```   
+添加远程库：`git remote add origin git@github.com:user/repository.git`
