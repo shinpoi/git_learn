@@ -1,21 +1,22 @@
 import numpy as np
 from ctypes import *
 
-// load dll
+# load dll
 sum_test = cdll.LoadLibrary('./np_array_sum.so')
 sum_test2 = np.ctypeslib.load_library('np_array_sum.so', '.')
 
-// create 2-dim array
+# create 2-dim array
 x = np.arange(1, 21, 0.1).reshape((-1, 2))
 
-// use ctypes.cdll.LoadLibrary
+# use ctypes.cdll.LoadLibrary
 sum_test.mysum2.restype = c_double
-sum_test.mysum2(x.ctypes.data_as(POINTER(c_double)), x.ctypes.strides, x.ctypes.shape)
+s1 = sum_test.mysum2(x.ctypes.data_as(POINTER(c_double)), x.ctypes.strides, x.ctypes.shape)
 
-// use np.ctypeslib.load_library()
+# use np.ctypeslib.load_library()
 sum_test2.mysum2.restype = c_double
-sum_test2.mysum2(x.ctypes.data_as(POINTER(c_double)), x.ctypes.strides, x.ctypes.shape)
+s2 = sum_test2.mysum2(x.ctypes.data_as(POINTER(c_double)), x.ctypes.strides, x.ctypes.shape)
 
+print(s1, s2)
 
 """
 考察：
