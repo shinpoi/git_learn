@@ -1,4 +1,4 @@
-// gcc -o libpy.so -shared -fPIC libpy.c
+// gcc -o libpy.so -shared -fPIC first_test.c
 
 #include <stdio.h>  
 #include <stdlib.h>  
