@@ -9,6 +9,7 @@
 [Learning to Navigate in Complex Environments](https://arxiv.org/abs/1611.03673) (30 Nov 2016)  
 [Learning Deep Nearest Neighbor Representations Using Differentiable Boundary Trees](https://arxiv.org/abs/1702.08833) (28 Feb 2017)  
 [PixelCNN-based Intrinsic Motivation improves exploration in the hardest Atari games](https://arxiv.org/abs/1703.01310) (3 Mar 2017)  
+[Variational Approaches for Auto-Encoding Generative Adversarial Networks](https://arxiv.org/abs/1706.04987)（15 Jun 2017）  
 
 ## News:
 [DeepMind and Blizzard to release StarCraft II as an AI research environment](https://deepmind.com/blog/deepmind-and-blizzard-release-starcraft-ii-ai-research-environment/)  
