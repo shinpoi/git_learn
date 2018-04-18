@@ -84,3 +84,7 @@ print("Hellow,world")   # python
 <p style="color:blue">Hello,world</p>   <!-- html -->
 ```   
 添加远程库：`git remote add origin git@github.com:user/repository.git`
+
+```
+https://bootstrap.pypa.io/get-pip.py
+```
