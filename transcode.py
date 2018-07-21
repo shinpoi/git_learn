@@ -1,4 +1,4 @@
-# coding: -*- utf-8 -*-
+# encode: utf-8
 # python3
 # windows only
 
@@ -7,6 +7,7 @@ import sys
 from optparse import OptionParser
 
 # parser
+parser = OptionParser()
 parser.add_option("-f", "--filename",
                   action="store_true", dest="f", default=True,
                   help="transcode filename? | default: true")
@@ -59,7 +60,7 @@ if options.F:
         for folder in folders:
             full_path =  "%s\%s" % (root, folder)
             new_folder = folder.encode("gbk").decode("shift-jis")
-            print("  - %s ------> %s" % (file, new_folder))
+            print("  - %s ------> %s" % (folder, new_folder))
             os.rename(full_path, "%s\%s" % (root, new_folder))
 
 # file
