@@ -29,13 +29,13 @@ parser.add_option("-p", "--path",
                   help="path | default: .")
 
 parser.add_option("-i", "--input",
-                  dest="i", default='shift-jis',
-                  help="input code | default: cp932")
+                  dest="i", default='gbk',
+                  help="input code | default: gbk")
 ### cp932: a update veersion of shift-jis ###
 
 parser.add_option("-o", "--output",
-                  dest="o", default='gbk',
-                  help="output code | default: gbk")
+                  dest="o", default='cp932',
+                  help="output code | default: cp932")
 
 options, args = parser.parse_args()
 path = options.p
@@ -59,9 +59,9 @@ if options.F:
         print("walk in: %s" % root)
         for folder in folders:
             full_path =  "%s\%s" % (root, folder)
-            new_folder = folder.encode("gbk").decode("shift-jis")
-            print("  - %s ------> %s" % (folder, new_folder))
+            new_folder = folder.encode(in_code).decode(out_code)
             os.rename(full_path, "%s\%s" % (root, new_folder))
+            print("  - %s ------> %s" % (folder, new_folder))
 
 # file
 if options.f:
@@ -71,9 +71,9 @@ if options.f:
         print("walk in: %s" % root)
         for file in files:
             full_path =  "%s\%s" % (root, file)
-            new_file = file.encode("gbk").decode("shift-jis")
-            print("  - %s ------> %s" % (file, new_file))
+            new_file = file.encode(in_code).decode(out_code)
             os.rename(full_path, "%s\%s" % (root, new_file))
+            print("  - %s ------> %s" % (file, new_file))
             
 # content
 if options.c:
