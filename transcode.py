@@ -61,7 +61,10 @@ if options.F:
             full_path =  "%s\%s" % (root, folder)
             new_folder = folder.encode(in_code).decode(out_code)
             os.rename(full_path, "%s\%s" % (root, new_folder))
-            print("  - %s ------> %s" % (folder, new_folder))
+            try:
+                print("  - %s ------> %s" % (folder, new_folder))
+            catch e:
+                pass
 
 # file
 if options.f:
@@ -73,7 +76,10 @@ if options.f:
             full_path =  "%s\%s" % (root, file)
             new_file = file.encode(in_code).decode(out_code)
             os.rename(full_path, "%s\%s" % (root, new_file))
-            print("  - %s ------> %s" % (file, new_file))
+            try:
+                print("  - %s ------> %s" % (file, new_file))
+            catch e:
+                pass
             
 # content
 if options.c:
