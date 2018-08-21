@@ -63,7 +63,7 @@ if options.F:
             os.rename(full_path, "%s\%s" % (root, new_folder))
             try:
                 print("  - %s ------> %s" % (folder, new_folder))
-            catch e:
+            except:
                 pass
 
 # file
@@ -78,7 +78,7 @@ if options.f:
             os.rename(full_path, "%s\%s" % (root, new_file))
             try:
                 print("  - %s ------> %s" % (file, new_file))
-            catch e:
+            except:
                 pass
             
 # content
