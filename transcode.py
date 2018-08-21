@@ -28,11 +28,12 @@ parser.add_option("-p", "--path",
                   dest="p", default='.',
                   help="path | default: .")
 
+### gb18030: gb2312 + gbk -> gb18030. windows only ###
 parser.add_option("-i", "--input",
-                  dest="i", default='gbk',
-                  help="input code | default: gbk")
-### cp932: a update veersion of shift-jis ###
+                  dest="i", default='gb18030',
+                  help="input code | default: gb18030")
 
+### cp932: update version of shift-jis ###
 parser.add_option("-o", "--output",
                   dest="o", default='cp932',
                   help="output code | default: cp932")
