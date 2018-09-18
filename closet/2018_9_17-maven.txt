@@ -1,0 +1,4 @@
+controller --> excuter --> transaction --> service --> dao
+mvn clean package >> clean、resources、compile、testResources、testCompile、test、jar 
+mvn clean install >> clean、resources、compile、testResources、testCompile、test、jar、install
+mvn clean deploy  >> clean、resources、compile、testResources、testCompile、test、jar、install、deploy
