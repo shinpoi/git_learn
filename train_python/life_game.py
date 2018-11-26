@@ -3,9 +3,9 @@ import curses
 import random
 import copy
 
-H = 35
-W = 100
-RANDOM_LIVE = 0.001
+H = 40
+W = 120
+RANDOM_LIVE = 0.01
 EPOCH = 100
 SLEEP = 1
 
@@ -72,7 +72,7 @@ def calc_status(now_arr):
                 if len(up_set) == len(left_set) == 0:
                     dot.s = set()
                     dot.s.add(dot)
-                if len(up_set) > 0 and len(left_set) > 0:
+                elif len(up_set) > 0 and len(left_set) > 0:
                     if up_set is left_set:
                         up_set.add(dot)
                         dot.s = up_set
@@ -81,10 +81,10 @@ def calc_status(now_arr):
                         union_set.add(dot)
                         for dot_ in union_set:
                             dot_.s = union_set
-                if len(up_set) > 0:
+                elif len(up_set) > 0:
                     up_set.add(dot)
                     dot.s = up_set
-                if len(left_set) > 0:
+                elif len(left_set) > 0:
                     left_set.add(dot)
                     dot.s = left_set
     # calc length
