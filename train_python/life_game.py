@@ -2,6 +2,101 @@ import time
 import curses
 import random
 import copy
+import numpy as np
+
+H = 70
+W = 130
+RANDOM_LIVE = 0
+EPOCH = 10000000
+SLEEP = 0.1
+
+# ○●⊙ ◇◆ □■ ★☆
+LIVE_CHAR = '●'
+DIE_CHAR = ' '
+
+rangeH = np.arange(1, H-1, 1)
+rangeW = np.arange(1, W-1, 1)
+
+def get_next_str(now_arr):
+    # now_arr.shape = (h, w)
+    next_arr = get_next_arr(now_arr)
+    next_str_arr = []
+    for row in next_arr:
+        li = [LIVE_CHAR if dot else DIE_CHAR for dot in row]
+        li.append('\n')
+        next_str_arr.append(li)
+    return next_arr, ''.join([''.join(li) for li in next_str_arr])
+
+
+# set next status by chain number
+def get_next_arr(now_arr):
+    next_arr = np.zeros((H, W), dtype=np.uint8)
+    for x in rangeH:
+        for y in rangeW:
+            status = getStatus(now_arr, x, y)
+            # 2, 3: live, other: die
+            if now_arr[x][y]:
+                if status == 2 or status == 3:
+                    next_arr[x, y] = 1
+                elif int(random.random() + RANDOM_LIVE):
+                    next_arr[x, y] = 1
+            else:
+                if status == 3:
+                    next_arr[x, y] = 1
+                elif int(random.random() + RANDOM_LIVE):
+                    next_arr[x, y] = 1
+    return next_arr
+
+def getStatus(now_arr, x, y):
+    return np.sum([now_arr[x-1][y-1], now_arr[x-1][y], now_arr[x-1][y+1],
+                   now_arr[x][y-1], now_arr[x][y+1],
+                   now_arr[x+1][y-1], now_arr[x+1][y], now_arr[x+1][y+1]])
+
+# to terminal
+def pbar(window):
+    window.scrollok(True)
+    window.clearok(True)
+    now_arr = init_arr()
+    for i in range(EPOCH):
+        now_arr, now_str = get_next_str(now_arr)
+        now_str = ("epoch: %s\n========================\n" % i) + now_str
+        window.clear()
+        window.addstr(now_str)
+        window.refresh()
+        time.sleep(SLEEP)
+
+
+# just for test
+def print2terminal():
+    now_arr = init_arr()
+    for i in range(EPOCH):
+        now_arr, now_str = get_next_str(now_arr)
+        print("epoch: %s\n========================\n" % i)
+        print(now_str)
+        time.sleep(SLEEP)
+
+
+def init_arr():
+    now_arr = np.zeros((H, W), dtype=np.uint8)
+    for x in rangeH:
+        for y in rangeW:
+            if int(random.random() + 0.1):
+                now_arr[x][y] = 1
+
+    return now_arr
+
+ 
+if __name__ == '__main__':
+    curses.wrapper(pbar)
+    # print2terminal()
+
+
+# warn algorithm
+'''
+import time
+import curses
+import random
+import copy
 
 H = 40
 W = 120
@@ -146,3 +241,4 @@ def init_arr():
 if __name__ == '__main__':
     curses.wrapper(pbar)
     # print2terminal()
+'''
