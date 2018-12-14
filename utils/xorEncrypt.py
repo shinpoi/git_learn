@@ -4,7 +4,7 @@
 import numpy as np
 
 ENCODE = 'ascii'
-TRUNCATE = np.uint8(0x0f)  # set high 4 bit to 0
+TRUNCATE = np.uint8(0x1f)  # set high 3 bit to 0
 
 
 # pad bs to multiples of block_len by x00
