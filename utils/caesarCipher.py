@@ -75,9 +75,9 @@ def mask_xor(key_arr, value_arr):
     return np.bitwise_xor(key_arr, value_arr)
 '''
 
-OFFSET_LOW = 31
-OFFSET_HIGH = 126
-VALID_NUM = OFFSET_HIGH - OFFSET_LOW  # 95, printable char
+OFFSET_LOW = 32  # printable char
+OFFSET_HIGH = 126  # printable char
+VALID_NUM = OFFSET_HIGH - OFFSET_LOW  # 94
 
 
 def mask_move_encrypt(key_arr, value_arr):
@@ -112,18 +112,18 @@ if __name__ == '__main__':
     k2 = str2arr('hgwueb4W#@R$TYHRTFDGSHYU&Trege4%RTHedgsqwref')
     arr2 = mask_move_encrypt(k2, ARR)
 
-    plot_arr(ARR, "original")
-    plot_arr(arr1, "simple_pw_hash")
-    plot_arr(arr2, "complex_pw_hash")
+    # plot_arr(ARR, "original")
+    # plot_arr(arr1, "simple_pw_hash")
+    # plot_arr(arr2, "complex_pw_hash")
 
-    # print('ciphertext: ' + '-'*50)
-    # print(arr1.tobytes().decode('ascii'), '\n')
-    # print(arr2.tobytes().decode('ascii'), '\n')
+    print('\n\nciphertext: ' + '-'*50)
+    print(arr1.tobytes().decode('ascii'), '\n')
+    print(arr2.tobytes().decode('ascii'), '\n')
 
-    # print('true: ' + '-'*50)
-    # print(mask_move_decrypt(k1, arr1).tobytes().decode('ascii'), '\n')
-    # print(mask_move_decrypt(k2, arr2).tobytes().decode('ascii'), '\n')
+    print('\n\ntrue: ' + '-'*50)
+    print(mask_move_decrypt(k1, arr1).tobytes().decode('ascii'), '\n')
+    print(mask_move_decrypt(k2, arr2).tobytes().decode('ascii'), '\n')
 
-    # print('fake: ' + '-'*50)
-    # print(mask_move_decrypt(k2, arr1).tobytes().decode('ascii'), '\n')
-    # print(mask_move_decrypt(k1, arr2).tobytes().decode('ascii'), '\n')
+    print('\n\nfake: ' + '-'*50)
+    print(mask_move_decrypt(k2, arr1).tobytes().decode('ascii'), '\n')
+    print(mask_move_decrypt(k1, arr2).tobytes().decode('ascii'), '\n')
