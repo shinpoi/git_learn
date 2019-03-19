@@ -22,7 +22,7 @@ def run():
 
 bi_open = __builtin__.open
 
-def LogsTestOpen(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True):
+def my_open(filename, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True):
     if filename.endswith('.sql'):
         _open = mock_open(read_data='this is mock_open()')
     else:
@@ -30,7 +30,7 @@ def LogsTestOpen(filename, mode='r', buffering=-1, encoding=None, errors=None, n
 
     return _open(filename, mode, buffering, encoding, errors, newline, closefd)
 
-with patch('builtins.open', LogsTestOpen, create=True):
+with patch('builtins.open', my_open, create=True):
     t2.run()
 
 """
