@@ -56,3 +56,8 @@ out_b = out_b.encode().replace(b'\e', b'\x1b')
 
 with open('motd', 'wb') as f:
   f.write(out_b)
+
+# confirm
+#
+# import sys
+# sys.stdout.buffer.write(out_b)
