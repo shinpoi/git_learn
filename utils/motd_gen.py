@@ -3,13 +3,19 @@
 
 import numpy as np
 import cv2
-
+import sys
+from random import choice
 
 #--- user define ---#
-
 img_path = '----'
-x_num_char = 50
-y_num_char = 22
+x_num_char = 40
+y_num_char = 16
+
+if len(sys.argv) > 1:
+  img_path = sys.argv[1]
+if len(sys.argv) > 3:
+  x_num_char = int(sys.argv[2])
+  y_num_char = int(sys.argv[3])
 
 #-------------------#
 
@@ -27,19 +33,28 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB).reshape((-1, 3))
 
 
 # get closest color code
+# why *(2, 4, 3): https://en.wikipedia.org/wiki/Color_difference
 res = np.zeros(len(img), dtype=np.int32)
 for i in range(len(res)):
-  res[i] = np.argmin(np.linalg.norm(colors - img[i], axis=1))
+  delta = colors - img[i]
+  delta[:, 0] *= 2
+  delta[:, 1] *= 4
+  delta[:, 2] *= 3
+  res[i] = np.argmin(np.linalg.norm(delta, axis=1))
 res = res.reshape((height, width))
 
-# prepare
+# char generator
 char_tplt = '\e[38;5;{i}m{text}\e[m'
+char_list = [i for i in range(0x5B, 0x7C)] + [i for i in range(0x21, 0x41)]
 class Counter:
   def __init__(self):
     self.counter = -1
+    self.s = 'xo>+<^v'
   def next_char(self):
     self.counter += 1
-    return 'ox+'[self.counter % 3]
+    return chr(choice(char_list))
+    # return chr(randint(0x21, 0x7e))
+    # return self.s[self.counter % (len(self.s))]
 ct = Counter()
 
 # image to motd str
@@ -58,6 +73,6 @@ with open('motd', 'wb') as f:
   f.write(out_b)
 
 # confirm
-#
-# import sys
-# sys.stdout.buffer.write(out_b)
+import sys
+print('')
+sys.stdout.buffer.write(out_b)
