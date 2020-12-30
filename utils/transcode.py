@@ -53,8 +53,7 @@ class Converter:
             target = join(path, re_path)
             if isdir(target):
                 self.convert(target)
-        for re_path in os.listdir(path):
-            target = join(path, re_path)
+                continue
             if any([target.endswith(ext) for ext in self.extensions]):
                 self.convert_content(target)
             if isfile(target):
