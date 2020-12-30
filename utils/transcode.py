@@ -51,12 +51,14 @@ class Converter:
             raise ValueError('Path: {} is not a directory!'.format(path))
         for re_path in os.listdir(path):
             target = join(path, re_path)
+            if isdir(target):
+                self.convert(target)
+        for re_path in os.listdir(path):
+            target = join(path, re_path)
             if any([target.endswith(ext) for ext in self.extensions]):
                 self.convert_content(target)
             if isfile(target):
                 self.convert_filename(target)
-            if isdir(target):
-                self.convert(target)
         self.convert_filename(path)
 
     def convert_filename(self, path: str):
