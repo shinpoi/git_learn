@@ -85,6 +85,6 @@ if __name__ == '__main__':
     converter = Converter(
         in_code=options.i,
         out_code=options.o,
-        extensions=options.e
+        extensions=options.e.split(',')
     )
     converter.convert(options.p)
