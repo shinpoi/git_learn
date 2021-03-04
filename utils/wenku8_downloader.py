@@ -48,5 +48,5 @@ for part in pull_list:
         # don't ask me why not utf-8 :(
         part_content.append(r.content.decode('utf-16le'))
 
-    with open(part_name, 'w') as f:
+    with open(part_name + '.txt', 'w') as f:
         f.write('\n'.join(part_content))
